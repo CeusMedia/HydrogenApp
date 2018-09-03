@@ -9,6 +9,7 @@
     "sources": {
         "Local_CM_Public": {
             "path": "vendor\/ceus-media\/hydrogen-modules\/"
+        }
     },
     "modules": {
         "App_Site": {},
