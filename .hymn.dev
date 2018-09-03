@@ -13,8 +13,18 @@
     },
     "modules": {
         "App_Site": {},
+        "Info_Pages": {},
         "Manage_Pages": {},
         "Resource_Authentication_Backend_Local": {},
+        "Resource_Frontend": {
+            "config": {
+                "path": "./"
+            }
+        },
+        "Resource_Mail": {
+            "config": {
+            }
+        },
         "UI_Navigation": {
             "config": {
                 "menu.source": "Database"

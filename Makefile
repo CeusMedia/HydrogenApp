@@ -120,7 +120,7 @@ detect-application-uri:
 
 detect-sources:
 	@hymn config-set sources.Local_CM_Public.path $(shell hymn config-get application.uri)vendor/ceus-media/hydrogen-modules/
-	@hymn config-set sources.Local_CM_Protected.path $(shell hymn config-get application.uri)vendor/ceus-media/hydrogen-modules-nonfree/
+	@test -d vendor/ceus-media/hydrogen-modules-nonfree && hymn config-set sources.Local_CM_Protected.path $(shell hymn config-get application.uri)vendor/ceus-media/hydrogen-modules-nonfree/ || true
 
 ask-system-group:
 	@echo
