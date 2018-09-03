@@ -1,0 +1,20 @@
+{
+    "name": "ceus-media/hydrogen-app",
+    "description": "Application skeleton to start with for a Hydrogen project.",
+    "type": "project",
+    "require": {
+        "ceus-media/common": "^0.8",
+        "ceus-media/hydrogen-framework": "^0.8",
+        "ceus-media/hydrogen-modules": "dev-master",
+        "ceus-media/bootstrap": "^0",
+        "ceus-media/mail": "^2",
+        "ceus-media/open-graph": "^0"
+    },
+    "authors": [
+        {
+            "name": "Christian Würker",
+            "email": "christian.wuerker@ceusmedia.de"
+        }
+    ],
+    "minimum-stability": "dev"
+}
