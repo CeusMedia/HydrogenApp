@@ -5,7 +5,7 @@ PWD				= $(shell pwd)
 DATE			= `date +'%Y-%m-%d'`
 
 install:
-	@test ! -f .hymn && $(MAKE) -s set-mode-dev || true
+	@test ! -f .hymn && $(MAKE) -s set-install-mode-dev || true
 	@$(MAKE) -s set-install-type-link
 	@$(MAKE) -s composer-install
 	@$(MAKE) -s set-rights
@@ -81,15 +81,15 @@ set-rights:
 
 ##  PUBLIC: SETTERS
 #------------------------
-set-mode-dev:
+set-install-mode-dev:
 	@test -f .hymn.dev && cp .hymn.dev .hymn || true
 	@$(MAKE) -s configure-ask
 
-set-mode-live:
+set-install-mode-live:
 	@test -f .hymn.dev && cp .hymn.live .hymn || true
 	@$(MAKE) -s configure
 
-set-mode-test:
+set-install-mode-test:
 	@test -f .hymn.test && cp .hymn.test .hymn || true
 	@$(MAKE) -s configure
 
