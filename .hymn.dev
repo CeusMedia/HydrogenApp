@@ -25,6 +25,12 @@
             "config": {
             }
         },
+        "UI_CSS_Panel": {
+            "config": {
+                "style": 1
+            }
+        },
+        "UI_Font_FontAwesome": {},
         "UI_Navigation": {
             "config": {
                 "menu.source": "Database"
