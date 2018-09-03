@@ -11,7 +11,14 @@
             "path": "vendor\/ceus-media\/hydrogen-modules\/"
     },
     "modules": {
-
+        "App_Site": {},
+        "Manage_Pages": {},
+        "Resource_Authentication_Backend_Local": {},
+        "UI_Navigation": {
+            "config": {
+                "menu.source": "Database"
+            }
+        }
     },
     "database": {
         "driver": "mysql",
