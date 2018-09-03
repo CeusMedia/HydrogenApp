@@ -1,0 +1,29 @@
+{
+    "application": {
+        "title": "Hydrogen Application",
+        "url": "",
+        "uri": "",
+        "installType": "link",
+        "installMode": "dev"
+    },
+    "sources": {
+        "Local_CM_Public": {
+            "path": "vendor\/ceus-media\/hydrogen-modules\/"
+    },
+    "modules": {
+
+    },
+    "database": {
+        "driver": "mysql",
+        "host": "localhost",
+        "port": "3306",
+        "username": "",
+        "password": "",
+        "name": "",
+        "prefix": ""
+    },
+    "system": {
+        "user": "",
+        "group": ""
+    }
+}
