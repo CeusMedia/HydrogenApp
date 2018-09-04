@@ -46,7 +46,6 @@ doc:
 
 update:
 	@$(MAKE) -s composer-update
-	@svn up vendor/ceus-media/hydrogen-modules-nonfree
 	@hymn app-update
 
 
@@ -58,7 +57,6 @@ update:
 	@rm -Rf vendor/ceus-media/hydra
 	@rm -Rf vendor/ceus-media/hydrogen-themes
 	@rm -Rf vendor/ceus-media/hydrogen-modules
-	@rm -Rf vendor/ceus-media/hydrogen-modules-nonfree
 	@rm -Rf config/sql
 	@rm -Rf hydra Hydra
 
@@ -68,6 +66,7 @@ update:
 set-permissions:
 	@$(MAKE) -s set-ownage
 	@$(MAKE) -s set-rights
+	@test -f jop.php && chmod +x job.php || true
 
 set-ownage:
 	@sudo chown -R ${shell hymn config-get system.user} .
@@ -76,7 +75,6 @@ set-ownage:
 set-rights:
 	@find . -type d -not -path "./vendor*" -print0 | xargs -0 xargs chmod 775
 	@find . -type f -not -path "./vendor*" -print0 | xargs -0 xargs chmod 664
-	@test -d vendor/ceus-media/hydrogen-modules-nonfree && find . -type f -path "./vendor/ceus-media/hydrogen-modules-nonfree/*" -print0 | xargs -0 xargs chmod 775 || true
 
 
 ##  PUBLIC: SETTERS
@@ -120,7 +118,6 @@ detect-application-uri:
 
 detect-sources:
 	@hymn config-set sources.Local_CM_Public.path $(shell hymn config-get application.uri)vendor/ceus-media/hydrogen-modules/
-	@test -d vendor/ceus-media/hydrogen-modules-nonfree && hymn config-set sources.Local_CM_Protected.path $(shell hymn config-get application.uri)vendor/ceus-media/hydrogen-modules-nonfree/ || true
 
 ask-system-group:
 	@echo
@@ -161,46 +158,12 @@ composer-install:
 composer-install-force:
 	@test vendor && rm -Rf vendor
 	@composer install
-	@find . -type f -path "./vendor/ceus-media/hydrogen-modules-nonfree/*" -print0 | xargs -0 xargs chmod 775 >/dev/null 2>&1 || true
 
 composer-update:
 	@composer update
-	@find . -type f -path "./vendor/ceus-media/hydrogen-modules-nonfree/*" -print0 | xargs -0 xargs chmod 775 >/dev/null 2>&1 || true
 
 
-##  HYMN: APP
+## JOBS
 #------------------------
-app-database-dump:
-	@hymn database-dump
-
-app-database-load:
-	@hymn database-load
-
-
-##  JOBS
-#------------------------
-count-mails:
-	@php job.php countQueuedMails
-
-send-mails:
-	@php job.php sendQueuedMails
-
-count-newsletters:
-	@php job.php Newsletter.count
-
-send-newsletters:
-	@php job.php Newsletter.send
-
-##  JOBS: New Style
-#------------------------
-job-resource-mail-queue-count:
-	@php job.php Resource.Mail.Queue.count
-
-job-resource-mail-queue-send:
-	@php job.php Resource.Mail.Queue.send
-
-job-resource-newsletter-count:
-	@php job.php Resource.Newsletter.count
-
-job-resource-newsletter-send:
-	@php job.php Resource.Newsletter.send
+job-index:
+	@./
