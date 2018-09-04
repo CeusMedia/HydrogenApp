@@ -66,7 +66,7 @@ update:
 set-permissions:
 	@$(MAKE) -s set-ownage
 	@$(MAKE) -s set-rights
-	@test -f jop.php && chmod +x job.php || true
+	@test -f job.php && chmod +x job.php || true
 
 set-ownage:
 	@sudo chown -R ${shell hymn config-get system.user} .
