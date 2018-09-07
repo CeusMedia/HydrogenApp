@@ -14,7 +14,9 @@
     "modules": {
         "App_Site": {},
         "Info_Pages": {},
+        "Manage_Content_Locales": {},
         "Manage_Pages": {},
+        "Manage_Users": {},
         "Resource_Authentication_Backend_Local": {},
         "Resource_Frontend": {
             "config": {
