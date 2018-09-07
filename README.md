@@ -6,7 +6,7 @@ Application skeleton to start with for a Hydrogen project.
 
 Clone an empty application skeleton:
 
-```composer create-project ceus-media/hydrogen-app -n```
+```composer create-project ceus-media/hydrogen-app -sdev -n```
 
 Afterwards change into project folder and run setup for development:
 
@@ -16,7 +16,12 @@ Now you are ready to install application modules:
 
 ```make install```
 
-Hint: During module installation you will be prompted to enter an email address.
-This address will be the systemwide default sender address for module Resource_Mail,
-which will be installed automatically within this basic application.
+During installation you will be prompted for some information:
+
+1. OS filesystem user and group
+2. URL of application
+3. Database credentials
+4. Default sender mail address
+
+The information are necessary, since this skeleton application is providing database access and provides mailing.
 
