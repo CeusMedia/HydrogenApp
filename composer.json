@@ -16,5 +16,6 @@
             "email": "christian.wuerker@ceusmedia.de"
         }
     ],
-    "minimum-stability": "dev"
+    "prefer-stable": true,
+    "minimum-stability": "stable"
 }
