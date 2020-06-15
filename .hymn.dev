@@ -7,9 +7,7 @@
         "installMode": "dev"
     },
     "sources": {
-        "Local_CM_Public": {
-            "path": "vendor\/ceus-media\/hydrogen-modules\/"
-        }
+        "CeusMedia_Public": {}
     },
     "modules": {
         "App_Site": {},
@@ -20,12 +18,11 @@
         "Resource_Authentication_Backend_Local": {},
         "Resource_Frontend": {
             "config": {
-                "path": "./"
+                "path": ".\/"
             }
         },
         "Resource_Mail": {
-            "config": {
-            }
+            "config": {}
         },
         "UI_CSS_Panel": {
             "config": {

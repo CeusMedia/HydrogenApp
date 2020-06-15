@@ -8,7 +8,8 @@
         "ceus-media/hydrogen-modules": "dev-master",
         "ceus-media/bootstrap": "^0",
         "ceus-media/mail": "^2",
-        "ceus-media/open-graph": "^0"
+        "ceus-media/open-graph": "^0",
+        "ceus-media/database": "^0.4.0"
     },
     "authors": [
         {
