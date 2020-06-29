@@ -1,8 +1,8 @@
 
 PATH_FRONTEND	= HydrogenApplication
 
-PERMS_DIR			= 750
-PERMS_FILE			= 640
+PERMS_DIR			= 770
+PERMS_FILE			= 660
 
 PWD					= $(shell pwd)
 DATE				= `date +'%Y-%m-%d'`
@@ -13,7 +13,7 @@ MODS_PROJECT		= modules/
 
 install-complete-and-empty:
 	@test ! -f .hymn && $(MAKE) -s set-install-mode-dev || true
-	@$(MAKE) -s configure
+	@$(MAKE) -s configure-ask
 	@$(MAKE) -s composer-install
 	@echo "Installing modules:" && hymn app-install
 	@cp .htaccess.dist .htaccess
@@ -23,7 +23,7 @@ install-complete-and-empty:
 
 install-files-only:
 	@test ! -f .hymn && $(MAKE) -s set-install-mode-dev || true
-	@$(MAKE) -s configure
+	@$(MAKE) -s configure-ask
 	@$(MAKE) -s composer-install
 	@echo "Installing modules:" && hymn app-install --db=no
 	@cp .htaccess.dist .htaccess
@@ -32,7 +32,7 @@ install-files-only:
 
 install-files-and-load-database:
 	@test ! -f .hymn && $(MAKE) -s set-install-mode-dev || true
-	@$(MAKE) -s configure
+	@$(MAKE) -s configure-ask
 	@$(MAKE) -s composer-install
 	@echo "Installing modules:" && hymn app-install --db=no
 	@cp .htaccess.dist .htaccess
@@ -92,6 +92,7 @@ set-ownage:
 set-rights:
 	@find . -type d -not -path "./vendor*" -print0 | xargs -0 xargs chmod ${PERMS_DIR}
 	@find . -type f -not -path "./vendor*" -print0 | xargs -0 xargs chmod ${PERMS_FILE}
+	@chmod g+w contents logs
 
 enable-clamav:
 	@cat /etc/passwd | grep clamav > /dev/null && ( groups clamav | grep ${shell hymn config-get system.group} > /dev/null && true || ( adduser clamav ${shell hymn config-get system.group} && sudo service clamav-daemon restart ) ) || true
