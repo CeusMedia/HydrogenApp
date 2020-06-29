@@ -92,7 +92,6 @@ set-ownage:
 set-rights:
 	@find . -type d -not -path "./vendor*" -print0 | xargs -0 xargs chmod ${PERMS_DIR}
 	@find . -type f -not -path "./vendor*" -print0 | xargs -0 xargs chmod ${PERMS_FILE}
-	@chmod g+w contents logs
 
 enable-clamav:
 	@cat /etc/passwd | grep clamav > /dev/null && ( groups clamav | grep ${shell hymn config-get system.group} > /dev/null && true || ( adduser clamav ${shell hymn config-get system.group} && sudo service clamav-daemon restart ) ) || true
