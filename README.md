@@ -4,7 +4,7 @@ Application skeleton to start with for a Hydrogen project.
 
 ## Installation
 
-**TLDR:** ```./install.sh```
+**TLDR:** ```composer create-project ceus-media/hydrogen-app -sdev -n && cd hydrogen-app && ./install.sh```
 
 Clone an empty application skeleton:
 
