@@ -13,8 +13,8 @@ MODS_PROJECT		= modules/
 
 install-complete-and-empty:
 	@test ! -f .hymn && $(MAKE) -s set-install-mode-dev || true
-	@$(MAKE) -s configure-ask
-	@$(MAKE) -s composer-install
+	@$(MAKE) -s configure-ask-with-db
+	@$(MAKE) -s composer-install-dev
 	@echo "Installing modules:" && hymn app-install
 	@cp .htaccess.dist .htaccess
 	@hymn database-load
@@ -24,7 +24,7 @@ install-complete-and-empty:
 install-files-only:
 	@test ! -f .hymn && $(MAKE) -s set-install-mode-dev || true
 	@$(MAKE) -s configure-ask
-	@$(MAKE) -s composer-install
+	@$(MAKE) -s composer-install-nodev
 	@echo "Installing modules:" && hymn app-install --db=no
 	@cp .htaccess.dist .htaccess
 	@echo "Settings permissions..." && $(MAKE) -s set-permissions
@@ -32,8 +32,8 @@ install-files-only:
 
 install-files-and-load-database:
 	@test ! -f .hymn && $(MAKE) -s set-install-mode-dev || true
-	@$(MAKE) -s configure-ask
-	@$(MAKE) -s composer-install
+	@$(MAKE) -s configure-ask-with-db
+	@$(MAKE) -s composer-install-nodev
 	@echo "Installing modules:" && hymn app-install --db=no
 	@cp .htaccess.dist .htaccess
 	@hymn database-load
@@ -43,9 +43,11 @@ install-files-and-load-database:
 build:
 	@$(MAKE) -s set-install-type-copy
 	@$(MAKE) -s detect-application-uri && $(MAKE) -s detect-sources
-	@$(MAKE) -s composer-install
+	@$(MAKE) -s composer-install-nodev
 	@echo "Installing modules:" && hymn app-install
 	@cp .htaccess.dist .htaccess
+
+pack:
 	@hymn database-load
 	@hymn database-dump install.sql
 	@$(MAKE) -s set-rights
@@ -99,6 +101,12 @@ enable-clamav:
 
 ##  PUBLIC: SETTERS
 #------------------------
+get-install-mode:
+	@hymn config-get application.installMode
+#	@echo Mode: $(shell hymn config-get application.installMode)
+#	@test dev = $(shell hymn config-get application.installMode) && echo yesDev1 || true;
+#	@[ dev = $(shell hymn config-get application.installMode) ] && echo yesDev2 || true;
+
 set-install-mode-dev:
 	@test -f .hymn.dev && cp .hymn.dev .hymn || true
 	@test -f config/config.ini.dev && cp config/config.ini.dev config/config.ini || true
@@ -134,8 +142,10 @@ configure-ask: detect-application-uri detect-application-url detect-sources
 	@$(MAKE) -s ask-system-group
 	@$(MAKE) -s ask-application-uri
 	@$(MAKE) -s ask-application-url
-	@$(MAKE) -s ask-database
 	@$(MAKE) -s .apply-application-url-to-config
+
+configure-ask-with-db: configure-ask
+	@$(MAKE) -s ask-database
 
 detect-application-uri:
 	@echo
@@ -177,27 +187,31 @@ ask-database:
 
 ##  COMPOSER
 #------------------------
-composer-install:
-	@test -d vendor && echo && echo "Updating libraries:" && composer update --no-dev || true
-	@test ! -d vendor && echo && echo "Loading libraries:" && composer install --no-dev || true
-	@$(MAKE) -s set-rights
+composer-install: composer-install-dev
 
 composer-install-dev:
 	@test vendor && echo && echo "Updating libraries:" && composer update || true
 	@test ! vendor && echo && echo "Loading libraries:" && composer install || true
 	@$(MAKE) -s set-rights
 
-composer-install-force:
+composer-install-nodev:
+	@test -d vendor && echo && echo "Updating libraries:" && composer update --no-dev || true
+	@test ! -d vendor && echo && echo "Loading libraries:" && composer install --no-dev || true
+	@$(MAKE) -s set-rights
+
+composer-install-nodev-force:
 	@test -d vendor && echo && echo "Removing current libraries..." && rm -Rf vendor || true
 	@composer install --no-dev
 	@$(MAKE) -s set-rights
 
-composer-update:
-	@composer update --no-dev
-	@$(MAKE) -s set-rights
+composer-update: composer-update-dev
 
 composer-update-dev:
 	@composer update
+	@$(MAKE) -s set-rights
+
+composer-update-nodev:
+	@composer update --no-dev
 	@$(MAKE) -s set-rights
 
 

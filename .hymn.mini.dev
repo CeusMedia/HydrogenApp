@@ -1,0 +1,37 @@
+{
+    "application": {
+        "title": "Hydrogen Application",
+        "url": "",
+        "uri": "",
+        "installType": "copy",
+        "installMode": "dev"
+    },
+    "sources": {
+        "CeusMedia_Public": {}
+    },
+    "modules": {
+        "App_Site": {},
+        "Manage_Content_Locales": {},
+        "Resource_Frontend": {
+            "config": {
+                "path": ".\/"
+            }
+        },
+        "UI_CSS_Panel": {
+            "config": {
+                "style": 1
+            }
+        },
+        "UI_Font_FontAwesome": {},
+        "UI_Helper_Messenger_Bootstrap": {},
+        "UI_Navigation": {
+            "config": {
+                "menu.source": "Modules"
+            }
+        }
+    },
+    "system": {
+        "user": "",
+        "group": ""
+    }
+}
