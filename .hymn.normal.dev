@@ -3,7 +3,7 @@
         "title": "Hydrogen Application",
         "url": "",
         "uri": "",
-        "installType": "link",
+        "installType": "copy",
         "installMode": "dev"
     },
     "sources": {
