@@ -23,7 +23,7 @@ We will use this one for now, by copying it to be the installation script for de
 
 ```cp .hymn.mini.dev .hymn.dev```
 
-No we announce development mode:
+Now, we announce development mode:
 
 ```make set-install-mode-dev``` 
 

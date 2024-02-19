@@ -3,13 +3,13 @@
     "description": "Application skeleton to start with for a Hydrogen project.",
     "type": "project",
     "require": {
-        "ceus-media/common": "^0.8",
-        "ceus-media/hydrogen-framework": "^0.8",
-        "ceus-media/hydrogen-modules": "dev-master",
-        "ceus-media/bootstrap": "^0",
-        "ceus-media/mail": "^2",
-        "ceus-media/open-graph": "^0",
-        "ceus-media/database": "^0.4.0"
+        "ceus-media/common": "^1.0 | 1.0.x-dev",
+        "ceus-media/hydrogen-framework": "^1.0 | 1.0.x-dev",
+        "ceus-media/hydrogen-modules": "^1.0 | 1.0.x-dev",
+        "ceus-media/bootstrap": "*",
+        "ceus-media/mail": "^2.6.1 | 2.6.x-dev",
+        "ceus-media/open-graph": "*",
+        "ceus-media/database": "^0.6 | 0.6.x-dev"
     },
     "authors": [
         {
