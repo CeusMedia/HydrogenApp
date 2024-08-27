@@ -7,7 +7,8 @@
         "installMode": "dev"
     },
     "sources": {
-        "CeusMedia_Public": {}
+        "CeusMedia_Public": {},
+        "Project": {}
     },
     "modules": {
         "App_Site": {},
@@ -49,5 +50,14 @@
     "system": {
         "user": "",
         "group": ""
+    },
+    "database": {
+        "driver": "mysql",
+        "host": "localhost",
+        "port": "3306",
+        "username": "test",
+        "password": "test",
+        "name": "test",
+        "prefix": ""
     }
 }
